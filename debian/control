@@ -48,7 +48,7 @@ Depends:
  libjson-c5,
  libuuid1,
  libkeyutils1,
- libaio1,
+ libaio1t64,
  libnettle8,
  liburing2,
  libacl1,
@@ -58,7 +58,7 @@ Depends:
  zlib1g,
  libxml2,
  libnl-route-3-200,
- libicu72,
+ libicu76,
  ${misc:Depends},
  ${python3:Depends},
  ${shlibs:Depends}
