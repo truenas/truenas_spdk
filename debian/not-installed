@@ -39,5 +39,5 @@ usr/lib/*.la
 usr/bin/dpdk-telemetry-exporter.py
 usr/bin/spdk-cli
 usr/bin/spdk-sma
-usr/lib/dpdk/pmds-25.1/*
-usr/lib/dpdk/pmds-25.1
+usr/lib/dpdk/pmds-26.0/*
+usr/lib/dpdk/pmds-26.0

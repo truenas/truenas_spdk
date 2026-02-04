@@ -1,0 +1,11 @@
+--- a/python/Makefile
++++ b/python/Makefile
+@@ -31,7 +31,7 @@
+ 	$(Q)python -m twine check $(SPDK_ROOT_DIR)/python/dist/*
+ 
+ install:
+-	$(Q)uv pip install --prefix=$(CONFIG_PREFIX) $(SPDK_ROOT_DIR)/python
++	$(Q)uv pip install --target=$(SPDK_ROOT_DIR)/build/python $(SPDK_ROOT_DIR)/python
+ 	rm -rf $(SPDK_ROOT_DIR)/python/spdk.egg-info
+ 
+ uninstall:

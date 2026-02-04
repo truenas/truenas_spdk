@@ -2,7 +2,7 @@ Source: spdk
 Section: net
 Priority: optional
 Maintainer: TrueNAS Development Team <dev@ixsystems.com>
-Standards-Version: 24.09
+Standards-Version: 26.01
 Homepage: https://spdk.io/
 Build-Depends:
  debhelper-compat (= 13),
