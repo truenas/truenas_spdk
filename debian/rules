@@ -15,6 +15,7 @@ export PYTHON=python3
 export am_cv_python_pythondir=/usr/lib/python3/dist-packages
 export am_cv_python_pyexecdir=/usr/lib/python3/dist-packages
 export DEB_PYTHON_INSTALL_LAYOUT=deb
+export PATH := $(PATH):$(HOME)/.local/bin
 
 confflags = \
 	--prefix=/usr \
@@ -29,7 +30,6 @@ confflags = \
 	--without-daos \
 	--without-shared \
 	--without-iscsi-initiator \
-	--without-fuse \
 	--without-nvme-cuse \
 	--without-raid5f \
 	--without-wpdk \

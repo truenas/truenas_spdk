@@ -1,8 +1,14 @@
+spdk (26.01-1) UNRELEASED; urgency=medium
+
+  * Upgrade SPDK from v25.05.x to v26.01.x
+
+ -- Brian Meagher <brian.meagher@truenas.com>  Tue, 03 Feb 2026 13:31:27 -0800
+
 spdk (24.09-1.2) UNRELEASED; urgency=medium
 
   * Build DPDK with cpu_instruction_set=generic
 
- -- brian <brian.meagher@truenas.com>  Thu, 17 Jul 2025 15:44:21 -0700
+ -- Brian Meagher <brian.meagher@truenas.com>  Thu, 17 Jul 2025 15:44:21 -0700
 
 spdk (24.09-1.1) UNRELEASED; urgency=medium
 

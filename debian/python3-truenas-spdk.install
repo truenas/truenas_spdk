@@ -1,7 +1,8 @@
 # python3-truenas-spdk
-usr/lib/python3/dist-packages/spdk-*.dist-info
-usr/lib/python3/dist-packages/spdk/*.py
-usr/lib/python3/dist-packages/spdk/rpc/*.py
+build/python/spdk-*.dist-info usr/lib/python3/dist-packages/
+build/python/spdk/*.py usr/lib/python3/dist-packages/spdk/
+build/python/spdk/cli/*.py usr/lib/python3/dist-packages/spdk/cli/
+build/python/spdk/rpc/*.py usr/lib/python3/dist-packages/spdk/rpc/
 dpdk/license/* usr/share/doc/python3-truenas-spdk/dpdk/license
 intel-ipsec-mb/LICENSE usr/share/doc/python3-truenas-spdk/intel-ipsec-mb
 isa-l/LICENSE usr/share/doc/python3-truenas-spdk/isa-l
@@ -9,4 +10,4 @@ isa-l-crypto/LICENSE usr/share/doc/python3-truenas-spdk/isa-l-crypto
 libvfio-user/LICENSE usr/share/doc/python3-truenas-spdk/libvfio-user
 ocf/LICENSE usr/share/doc/python3-truenas-spdk/ocf
 xnvme/LICENSE usr/share/doc/python3-truenas-spdk/xnvme
-usr/bin/spdk-rpc
+build/python/bin/spdk-rpc usr/bin/spdk-rpc

@@ -1,0 +1,110 @@
+From b1c54ce34d1d5cbd619c64f8432edc1737baad0e Mon Sep 17 00:00:00 2001
+From: Boris Glimcher <Boris.Glimcher@emc.com>
+Date: Sun, 1 Feb 2026 15:43:02 -0500
+Subject: [PATCH] pkgdep: pin pip version to 26
+
+for more details see:
+- https://github.com/jazzband/pip-tools/issues/2319
+- https://github.com/jazzband/pip-tools/issues/2252
+
+Change-Id: I611d82cc8c9345f7c37c7485472a43137218e9fa
+Signed-off-by: Boris Glimcher <Boris.Glimcher@emc.com>
+Reviewed-on: https://review.spdk.io/c/spdk/spdk/+/27671
+Reviewed-by: Tomasz Zawadzki <tomasz@tzawadzki.com>
+Reviewed-by: Aleksey Marchuk <alexeymar@nvidia.com>
+Community-CI: Mellanox Build Bot
+Reviewed-by: Marek Chomnicki <mchomnicki@nvidia.com>
+Reviewed-by: Dor Deri <dor.deri@dell.com>
+Reviewed-by: Karol Latecki <karol.latecki@nutanix.com>
+Tested-by: SPDK Automated Test System <spdkbot@gmail.com>
+---
+ scripts/pkgdep/arch.sh    |  4 ++--
+ scripts/pkgdep/debian.sh  | 11 ++---------
+ scripts/pkgdep/mariner.sh |  4 ++--
+ scripts/pkgdep/rhel.sh    | 14 ++------------
+ 4 files changed, 8 insertions(+), 25 deletions(-)
+
+diff --git a/scripts/pkgdep/arch.sh b/scripts/pkgdep/arch.sh
+index 383a4fff9..e1db53fbd 100755
+--- a/scripts/pkgdep/arch.sh
++++ b/scripts/pkgdep/arch.sh
+@@ -11,9 +11,9 @@ pacman -Sy --needed --noconfirm python-pexpect python-pip libffi
+ 
+ # per PEP668 work inside virtual env
+ virtdir=${PIP_VIRTDIR:-/var/spdk/dependencies/pip}
+-python3 -m venv --upgrade-deps --system-site-packages "$virtdir"
++python3 -m venv --system-site-packages "$virtdir"
+ source "$virtdir/bin/activate"
+-python -m pip install pip-tools
++python -m pip install -U "pip<26" setuptools wheel pip-tools
+ pip-compile --extra dev --strip-extras -o "$rootdir/scripts/pkgdep/requirements.txt" "${rootdir}/python/pyproject.toml"
+ pip install -r "$rootdir/scripts/pkgdep/requirements.txt"
+ 
+diff --git a/scripts/pkgdep/debian.sh b/scripts/pkgdep/debian.sh
+index 9f9c3c484..562be1464 100755
+--- a/scripts/pkgdep/debian.sh
++++ b/scripts/pkgdep/debian.sh
+@@ -12,16 +12,9 @@ apt-get install -y gcc g++ make libcunit1-dev libaio-dev libssl-dev libjson-c-de
+ 
+ # per PEP668 work inside virtual env
+ virtdir=${PIP_VIRTDIR:-/var/spdk/dependencies/pip}
+-if python3 -c 'import sys; exit(0 if sys.version_info >= (3,9) else 1)'; then
+-	python3 -m venv --upgrade-deps --system-site-packages "$virtdir"
+-else
+-	# --upgrade-deps was introduced only in Python 3.9.0 (October 5, 2020).
+-	python3 -m venv --system-site-packages "$virtdir"
+-	"$virtdir"/bin/pip install --upgrade pip setuptools
+-fi
+-pkgdep_toolpath pip "$virtdir/bin"
++python3 -m venv --system-site-packages "$virtdir"
+ source "$virtdir/bin/activate"
+-python -m pip install pip-tools
++python -m pip install -U "pip<26" setuptools wheel pip-tools
+ pip-compile --extra dev --strip-extras -o "$rootdir/scripts/pkgdep/requirements.txt" "${rootdir}/python/pyproject.toml"
+ pip3 install -r "$rootdir/scripts/pkgdep/requirements.txt"
+ 
+diff --git a/scripts/pkgdep/mariner.sh b/scripts/pkgdep/mariner.sh
+index 3e6a51d25..9efc66f01 100755
+--- a/scripts/pkgdep/mariner.sh
++++ b/scripts/pkgdep/mariner.sh
+@@ -74,9 +74,9 @@ fi
+ 
+ # per PEP668 work inside virtual env
+ virtdir=${PIP_VIRTDIR:-/var/spdk/dependencies/pip}
+-python3 -m venv --upgrade-deps --system-site-packages "$virtdir"
++python3 -m venv --system-site-packages "$virtdir"
+ source "$virtdir/bin/activate"
+-python -m pip install pip-tools
++python -m pip install -U "pip<26" setuptools wheel pip-tools
+ pip-compile --extra dev --strip-extras -o "$rootdir/scripts/pkgdep/requirements.txt" "${rootdir}/python/pyproject.toml"
+ pip3 install -r "$rootdir/scripts/pkgdep/requirements.txt"
+ 
+diff --git a/scripts/pkgdep/rhel.sh b/scripts/pkgdep/rhel.sh
+index 7fb415bc1..f7a7ffca2 100755
+--- a/scripts/pkgdep/rhel.sh
++++ b/scripts/pkgdep/rhel.sh
+@@ -119,19 +119,9 @@ fi
+ 
+ # per PEP668 work inside virtual env
+ virtdir=${PIP_VIRTDIR:-/var/spdk/dependencies/pip}
+-if python3 -c 'import sys; exit(0 if sys.version_info >= (3,9) else 1)'; then
+-	python3 -m venv --upgrade-deps --system-site-packages "$virtdir"
+-else
+-	# --upgrade-deps was introduced only in Python 3.9.0 (October 5, 2020).
+-	python3 -m venv --system-site-packages "$virtdir"
+-	# pip3, which is shipped with centos8 and rocky8, is currently providing faulty ninja binary
+-	# which segfaults at each run. To workaround it, upgrade pip itself and then use it for each
+-	# package - new pip will provide ninja at the same version but with the actually working
+-	# binary.
+-	"$virtdir"/bin/pip install --upgrade pip setuptools
+-fi
++python3 -m venv --system-site-packages "$virtdir"
+ source "$virtdir/bin/activate"
+-python -m pip install pip-tools
++python -m pip install -U "pip<26" setuptools wheel pip-tools
+ pip-compile --extra dev --strip-extras -o "$rootdir/scripts/pkgdep/requirements.txt" "${rootdir}/python/pyproject.toml"
+ python -m pip install -r "$rootdir/scripts/pkgdep/requirements.txt"
+ 
+-- 
+2.47.3
+
