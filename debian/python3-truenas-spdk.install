@@ -1,6 +1,7 @@
 # python3-truenas-spdk
 build/python/spdk-*.dist-info usr/lib/python3/dist-packages/
 build/python/spdk/*.py usr/lib/python3/dist-packages/spdk/
+build/python/spdk/cli/*.py usr/lib/python3/dist-packages/spdk/cli/
 build/python/spdk/rpc/*.py usr/lib/python3/dist-packages/spdk/rpc/
 dpdk/license/* usr/share/doc/python3-truenas-spdk/dpdk/license
 intel-ipsec-mb/LICENSE usr/share/doc/python3-truenas-spdk/intel-ipsec-mb
