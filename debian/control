@@ -50,7 +50,6 @@ Depends:
  libkeyutils1,
  libaio1t64,
  libnettle8,
- liburing2,
  libacl1,
  liblzma5,
  libzstd1,
@@ -77,6 +76,7 @@ Package: python3-truenas-spdk
 Architecture: all
 Section: python
 Depends:
+ truenas-spdk,
  python3-requests,
  python3-setuptools,
  ${misc:Depends},
