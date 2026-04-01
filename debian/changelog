@@ -1,3 +1,9 @@
+spdk (26.01-1.1) UNRELEASED; urgency=medium
+
+  * Add ibverbs-providers runtime dependency
+
+ -- Brian Meagher <brian.meagher@truenas.com>  Wed, 01 Apr 2026 13:51:54 -0700
+
 spdk (26.01-1) UNRELEASED; urgency=medium
 
   * Upgrade SPDK from v25.05.x to v26.01.x
