@@ -43,6 +43,7 @@ Depends:
  libarchive13,
  libnuma1,
  libibverbs1,
+ ibverbs-providers,
  librdmacm1,
  liburing2,
  libjson-c5,
