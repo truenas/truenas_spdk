@@ -6,8 +6,10 @@ Standards-Version: 26.01
 Homepage: https://spdk.io/
 Build-Depends:
  debhelper-compat (= 13),
- linux-headers-truenas-production-amd64,
- linux-headers-truenas-debug-amd64,
+ linux-headers-truenas-production-amd64 [amd64],
+ linux-headers-truenas-production-arm64 [arm64],
+ linux-headers-truenas-debug-amd64 [amd64],
+ linux-headers-truenas-debug-arm64 [arm64],
  dh-python,
  gcc,
  g++,
@@ -38,7 +40,7 @@ Vcs-Browser: https://github.com/truenas/spdk
 Vcs-Git: https://github.com/truenas/spdk
 
 Package: truenas-spdk
-Architecture: amd64
+Architecture: any
 Depends:
  libarchive13,
  libnuma1,
