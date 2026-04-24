@@ -19,9 +19,9 @@ export PATH := $(PATH):$(HOME)/.local/bin
 
 confflags = \
 	--prefix=/usr \
-	--libdir=/usr/lib/x86_64-linux-gnu \
+	--libdir=/usr/lib/${DEB_HOST_MULTIARCH} \
 	--with-rdma \
-	--with-uring=/usr/lib/x86_64-linux-gnu \
+	--with-uring=/usr/lib/${DEB_HOST_MULTIARCH} \
 	--with-vfio-user \
 	--without-rbd \
 	--without-ublk \
